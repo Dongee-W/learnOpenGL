@@ -2,13 +2,15 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#define STB_IMAGE_IMPLEMENTATION
+#ifndef STB_IMAGE_IMPLEMENTATION_
+#define STB_IMAGE_IMPLEMENTATION_
 #include "stb_image.h"
+#endif /* STB_IMAGE_IMPLEMENTATION_ */
 #include "Shader.h"
 
 // settings
 const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_HEIGHT = 800;
 
 
 /* glfw: whenever the window size changed (by OS or user resize)
@@ -27,7 +29,7 @@ void processInput(GLFWwindow* window)
         glfwSetWindowShouldClose(window, true);
 }
 
-int main() {
+int demoTexture() {
     /* Initialize the library */
     if (!glfwInit())
         return -1;
@@ -60,7 +62,7 @@ int main() {
     glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    Shader shaderProgram("resources/shaders/Texture.vs", "resources/shaders/Texture.fs");
+    Shader shaderProgram("../resources/shaders/Texture.vs", "../resources/shaders/Texture.fs");
 
     float vertices[] = {
         // positions // colors // texture coords
@@ -127,7 +129,7 @@ int main() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     int width, height, nrChannels;
-    unsigned char* data = stbi_load("resources/rock_texture.jpg", &width, &height,
+    unsigned char* data = stbi_load("../resources/rock_texture.jpg", &width, &height,
         &nrChannels, 0);
 
     if (data) {
@@ -152,7 +154,7 @@ int main() {
     
     // OpenGL texture's y coordinate the opposite of image representation
     stbi_set_flip_vertically_on_load(true); 
-    data = stbi_load("resources/container.jpg", &width, &height,
+    data = stbi_load("../resources/container.jpg", &width, &height,
         &nrChannels, 0);
     std::cout << width << std::endl;
     std::cout << height << std::endl;

@@ -5,8 +5,10 @@
 #include <gtc/type_ptr.hpp>
 #include <iostream>
 
-#define STB_IMAGE_IMPLEMENTATION
+#ifndef STB_IMAGE_IMPLEMENTATION_
+#define STB_IMAGE_IMPLEMENTATION_
 #include "stb_image.h"
+#endif /* STB_IMAGE_IMPLEMENTATION_ */
 #include "Shader.h"
 
 // settings

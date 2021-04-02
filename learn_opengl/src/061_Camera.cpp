@@ -75,7 +75,7 @@ namespace LearnOpenGL {
 		camera.ProcessMouseScroll(yoffset);
 	}
 
-	int flyThroughScene() {
+	int demoFlyThroughScene() {
 		/* Initialize the library */
 		if (!glfwInit())
 			return -1;

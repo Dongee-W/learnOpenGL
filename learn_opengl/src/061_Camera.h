@@ -1,4 +1,4 @@
 #pragma once
 namespace LearnOpenGL {
-	int flyThroughScene();
+	int demoFlyThroughScene();
 }
