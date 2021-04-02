@@ -1,6 +1,9 @@
 #include <GLAD/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 #ifndef STB_IMAGE_IMPLEMENTATION_
 #define STB_IMAGE_IMPLEMENTATION_
@@ -26,22 +29,40 @@ namespace ImageViewer {
             glfwSetWindowShouldClose(window, true);
     }
 
+    unsigned char* cvMat2TexInput(cv::Mat& img)
+    {
+        cv::cvtColor(img, img, cv::COLOR_BGR2RGB);
+        cv::flip(img, img, -1);
+        return img.data;
+    }
+
     int runImageViewer() {
-        int width, height, nrChannels;
+        //int width, height, nrChannels;
 
         // OpenGL texture's y coordinate the opposite of image representation
-        stbi_set_flip_vertically_on_load(true);
-        unsigned char* data = stbi_load("../resources/test.jpg", &width, &height,
-            &nrChannels, 0);
+        //stbi_set_flip_vertically_on_load(true);
+        //unsigned char* data = stbi_load("../resources/nature.jpg", &width, &height,
+        //    &nrChannels, 0);
 
-        if (data) {
-            std::cout << "Image width: " << width << std::endl;
-            std::cout << "Image height: " << height << std::endl;
-            std::cout << "Number of channels: " << nrChannels << std::endl;
-        }
-        else {
-            throw std::exception("Failed to load texture image.");
-        }
+        std::string path = "../resources/nature.jpg";
+        cv::Mat originalImg = cv::imread(path);
+        //cv::imshow("Original", originalImg);
+        cv::line(originalImg, cv::Point(40, 20), cv::Point(100, 200), cv::Scalar(255, 0, 0), 5);
+
+        std::cout << "Image width: " << originalImg.size().width << std::endl;
+        std::cout << "Image height: " << originalImg.size().height << std::endl;
+        //if (originalImg) {
+            
+            //std::cout << "Number of channels: " << nrChannels << std::endl;
+        //}
+        //else {
+        //    throw std::exception("Failed to load texture image.");
+        //}
+
+
+        
+        
+
 
         /* Initialize the library */
         if (!glfwInit())
@@ -54,7 +75,7 @@ namespace ImageViewer {
         GLFWwindow* window;
 
         /* Create a windowed mode window and its OpenGL context */
-        window = glfwCreateWindow(width, height, "Image Viewer", NULL, NULL);
+        window = glfwCreateWindow(originalImg.size().width, originalImg.size().height, "Image Viewer", NULL, NULL);
         if (!window)
         {
             std::cout << "Failed to create GLFW window" << std::endl;
@@ -72,7 +93,7 @@ namespace ImageViewer {
             return -1;
         }
 
-        glViewport(0, 0, width, height);
+        glViewport(0, 0, originalImg.size().width, originalImg.size().height);
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
         Shader shaderProgram("../resources/shaders/ImageViewer.vs", 
@@ -138,11 +159,11 @@ namespace ImageViewer {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
-            GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, originalImg.size().width, originalImg.size().height, 0, GL_RGB,
+            GL_UNSIGNED_BYTE, cvMat2TexInput(originalImg));
         glGenerateMipmap(GL_TEXTURE_2D);
 
-        stbi_image_free(data); // Free memory
+        //stbi_image_free(data); // Free memory
 
         shaderProgram.use();
         shaderProgram.setInt("textureImage", 0);
