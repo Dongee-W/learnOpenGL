@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\glad.c">
+    <ClCompile Include="src\util\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\061_Camera.cpp">
@@ -24,7 +24,10 @@
     <ClCompile Include="src\sample\ImageLoading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\03_Texture.cpp">
+    <ClCompile Include="src\030_Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\experiments\ImageViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +53,10 @@
     <ClInclude Include="src\sample\ImageLoading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\03_Texture.h">
+    <ClInclude Include="src\030_Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\experiments\ImageViewer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

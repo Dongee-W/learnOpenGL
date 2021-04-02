@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "03_Texture.h"
+#include "030_Texture.h"
 #include "061_Camera.h"
 
-TEST(Scene03, Texture) {
+TEST(Scene030, Texture) {
     int success = demoTexture();
     EXPECT_EQ(success, 0);
 }

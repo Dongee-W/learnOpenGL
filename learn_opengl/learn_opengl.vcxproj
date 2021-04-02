@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\03_Texture.cpp" />
+    <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_Camera.cpp" />
-    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\experiments\ImageViewer.cpp" />
+    <ClCompile Include="src\util\glad.c" />
     <ClCompile Include="src\sample\ImageLoading.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,9 +35,10 @@
     <None Include="resources\shaders\Transformation.vs" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\03_Texture.h" />
+    <ClInclude Include="src\030_Texture.h" />
     <ClInclude Include="src\061_Camera.h" />
     <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\experiments\ImageViewer.h" />
     <ClInclude Include="src\sample\ImageLoading.h" />
     <ClInclude Include="src\Shader.h" />
   </ItemGroup>
