@@ -18,7 +18,7 @@
     <ClCompile Include="src\util\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\061_Camera.cpp">
+    <ClCompile Include="src\061_CameraModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\sample\ImageLoading.cpp">
@@ -28,6 +28,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\experiments\ImageViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\010_MinimalCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sample\ErrorHandling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +53,7 @@
     <ClInclude Include="src\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\061_Camera.h">
+    <ClInclude Include="src\061_CameraModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\sample\ImageLoading.h">
@@ -57,6 +63,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\experiments\ImageViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\010_MinimalCode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sample\ErrorHandling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,30 @@
 #include <GLAD/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <string>
 
-namespace MinimalCode {
+#define ASSERT(x) if (!(x)) __debugbreak(); // Compiler dependent
+#define glCall(x) glClearError();\
+	x;\
+	ASSERT(glLogCall(#x, __FILE__, __LINE__))
+
+namespace ErrorHandling {
+
+
+	/* Error Handling Mechanism */
+	static void glClearError() {
+		while (glGetError() != GL_NO_ERROR);
+	}
+
+	static bool glLogCall(const char* function, const char* file, int line) {
+		while (GLenum error = glGetError()) {
+			//throw std::exception("[OpenGL Error]");
+			std::cout << "[OpengGL ERROR] (" << error << ") " << 
+				function << " " << file << ":" << line << std::endl;
+			return false;
+		}
+		return true;
+	}
 
 	// settings
 	const unsigned int SCR_WIDTH = 800;
@@ -38,7 +60,7 @@ namespace MinimalCode {
 			glfwSetWindowShouldClose(window, true);
 	}
 
-	int demoMinimalOpenGL() {
+	int demoErrorHandling() {
 		/* Initialize the library */
 		if (!glfwInit())
 			return -1;
@@ -175,13 +197,13 @@ namespace MinimalCode {
 			glUseProgram(shaderProgram);
 
 			glBindVertexArray(VAO);
-			//glDrawArrays(GL_TRIANGLES, 0, 3);
 
 			// Wire frame mode
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-			//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			//glClearError();
+			glCall(glDrawElements(GL_TRIANGLES, 6, GL_INT, 0)); // Insert error
+			//ASSERT(glLogCall());
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();

@@ -1,6 +1,11 @@
 #include <gtest/gtest.h>
+#include "010_MinimalCode.h"
 #include "030_Texture.h"
-#include "061_Camera.h"
+#include "061_CameraModule.h"
+
+TEST(Scene010, MinimalCode) {
+    int success = MinimalCode::demoMinimalOpenGL();
+}
 
 TEST(Scene030, Texture) {
     int success = demoTexture();
