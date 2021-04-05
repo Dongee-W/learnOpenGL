@@ -3,6 +3,6 @@
 #include "sample/ErrorHandling.h"
 
 TEST(Sample, ErrorHandling) {
-    int success = ErrorHandling::demoErrorHandling();
+    int success = demoErrorHandling();
     EXPECT_EQ(success, 0);
 }

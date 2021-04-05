@@ -2,7 +2,7 @@
 
 #include "experiments/ImageViewer.h"
 
-TEST(Experiments, Image2D) {
-    int success = ImageViewer::runImageViewer();
+TEST(Experiments, ImageViewer) {
+    int success = runImageViewer();
     EXPECT_EQ(success, 0);
 }
