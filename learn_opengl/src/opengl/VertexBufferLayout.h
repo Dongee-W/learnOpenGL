@@ -2,8 +2,6 @@
 #include <vector>
 #include <GLAD/glad.h>
 
-#include "Renderer.h"
-
 struct VertexBufferElement {
 	unsigned int type;
 	unsigned int count; 
@@ -15,7 +13,8 @@ struct VertexBufferElement {
 		case GL_UNSIGNED_INT: return 4;
 		case GL_UNSIGNED_BYTE: return 1;
 		}
-		ASSERT(false);
+
+		throw std::exception("Unsupported Opengl type");
 		return 0;
 	}
 };

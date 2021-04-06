@@ -9,7 +9,7 @@
 #define STB_IMAGE_IMPLEMENTATION_
 #include "stb_image.h"
 #endif /* STB_IMAGE_IMPLEMENTATION_ */
-#include "../Shader.h"
+#include "../opengl/Shader.h"
 
 namespace {
 

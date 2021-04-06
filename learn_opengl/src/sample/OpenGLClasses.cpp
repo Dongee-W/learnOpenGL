@@ -6,6 +6,7 @@
 #include "../opengl/IndexBuffer.h"
 #include "../opengl/VertexArray.h"
 #include "../opengl/Shader.h"
+#include "../opengl/Renderer.h"
 
 namespace {
 
@@ -91,24 +92,18 @@ int demoOpenGLClasses() {
 
 		VertexBufferLayout layout;
 		layout.push<float>(3);
-		//layout.push<float>(3);
 		va.addBuffer(vb, layout);
-		//va.unbind();
+
+		Renderer renderer;
 
 		while (!glfwWindowShouldClose(window))
 		{
 			/* Process user input */
 			processInput(window);
 
-			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			renderer.clear();
 
-			shaderProgram.use();
-
-			va.bind();
-			ib.bind();
-
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			renderer.draw(va, ib, shaderProgram);
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();
