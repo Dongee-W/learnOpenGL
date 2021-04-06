@@ -23,7 +23,12 @@
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
     <ClCompile Include="src\experiments\ImageViewer.cpp" />
+    <ClCompile Include="src\opengl\IndexBuffer.cpp" />
+    <ClCompile Include="src\opengl\Renderer.cpp" />
+    <ClCompile Include="src\opengl\VertexArray.cpp" />
+    <ClCompile Include="src\opengl\VertexBuffer.cpp" />
     <ClCompile Include="src\sample\ErrorHandling.cpp" />
+    <ClCompile Include="src\sample\OpenGLClasses.cpp" />
     <ClCompile Include="src\util\glad.c" />
     <ClCompile Include="src\sample\ImageLoading.cpp" />
   </ItemGroup>
@@ -41,9 +46,15 @@
     <ClInclude Include="src\061_CameraModule.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\experiments\ImageViewer.h" />
+    <ClInclude Include="src\opengl\IndexBuffer.h" />
+    <ClInclude Include="src\opengl\Renderer.h" />
+    <ClInclude Include="src\opengl\VertexArray.h" />
+    <ClInclude Include="src\opengl\VertexBuffer.h" />
+    <ClInclude Include="src\opengl\VertexBufferLayout.h" />
     <ClInclude Include="src\sample\ErrorHandling.h" />
     <ClInclude Include="src\sample\ImageLoading.h" />
-    <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\sample\OpenGLClasses.h" />
+    <ClInclude Include="src\opengl\Shader.h" />
     <ClInclude Include="src\010_MinimalCode.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -7,7 +7,7 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include "Shader.h"
+#include "opengl/Shader.h"
 #include "Camera.h"
 
 namespace LearnOpenGL {

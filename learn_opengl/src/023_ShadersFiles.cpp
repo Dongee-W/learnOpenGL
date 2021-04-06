@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-#include "Shader.h"
+#include "opengl/Shader.h"
 
 // settings
 const unsigned int SCR_WIDTH = 800;

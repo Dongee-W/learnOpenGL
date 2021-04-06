@@ -1,5 +1,2 @@
 #pragma once
-
-namespace MinimalCode {
-	int demoMinimalOpenGL();
-}
+int demoMinimalOpenGL();

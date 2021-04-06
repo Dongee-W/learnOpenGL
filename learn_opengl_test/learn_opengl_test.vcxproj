@@ -55,6 +55,7 @@
     <ClCompile Include="src\experiments\ImageViewerTest.cpp" />
     <ClCompile Include="src\sample\ErrorHandlingTest.cpp" />
     <ClCompile Include="src\sample\ImageLoadingTest.cpp" />
+    <ClCompile Include="src\sample\OpenGLClassesTest.cpp" />
     <ClCompile Include="src\SceneTest.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
