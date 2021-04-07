@@ -26,6 +26,7 @@
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
     <ClCompile Include="src\opengl\Renderer.cpp" />
+    <ClCompile Include="src\opengl\Texture.cpp" />
     <ClCompile Include="src\opengl\VertexArray.cpp" />
     <ClCompile Include="src\opengl\VertexBuffer.cpp" />
     <ClCompile Include="src\sample\ErrorHandling.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="src\opengl\Exception.h" />
     <ClInclude Include="src\opengl\IndexBuffer.h" />
     <ClInclude Include="src\opengl\Renderer.h" />
+    <ClInclude Include="src\opengl\Texture.h" />
     <ClInclude Include="src\opengl\VertexArray.h" />
     <ClInclude Include="src\opengl\VertexBuffer.h" />
     <ClInclude Include="src\opengl\VertexBufferLayout.h" />

@@ -7,6 +7,7 @@
 #include "../opengl/VertexArray.h"
 #include "../opengl/Shader.h"
 #include "../opengl/Renderer.h"
+#include "../opengl/Texture.h"
 
 namespace {
 
@@ -65,22 +66,24 @@ int demoOpenGLClasses() {
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	/* Build and compile shader program */
-	Shader shaderProgram("../resources/shaders/OpenGLClassesTest.vs", "../resources/shaders/OpenGLClassesTest.fs");
+	Shader shaderProgram("../resources/shaders/OpenGLClassesTest.vs", 
+		"../resources/shaders/OpenGLClassesTest.fs");
 
 	{
-		/*
+		
 		float vertices[] = {
-			0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,// top right
-			0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom right
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // bottom left
-			-0.5f, 0.5f, 0.0f, 0.0f, 0.5f, 1.0f // top left
-		};*/
+			0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
+			0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+			-0.5f, 0.5f, 0.0f, 0.0f, 1.0f // top left
+		};
+		/*
 		float vertices[] = {
 			0.5f, 0.5f, 0.0f, // top right
 			0.5f, -0.5f, 0.0f, // bottom right
 			-0.5f, -0.5f, 0.0f, // bottom left
 			-0.5f, 0.5f, 0.0f,  // top left
-		};
+		};*/
 		unsigned int indices[] = { // note that we start from 0!
 			0, 1, 3, // first triangle
 			1, 2, 3 // second triangle
@@ -92,9 +95,15 @@ int demoOpenGLClasses() {
 
 		VertexBufferLayout layout;
 		layout.push<float>(3);
+		layout.push<float>(2);
 		va.addBuffer(vb, layout);
 
 		Renderer renderer;
+
+		Texture texture("../resources/container.jpg");
+		texture.bind();
+
+		shaderProgram.setInt("u_Texture", 0);
 
 		while (!glfwWindowShouldClose(window))
 		{
