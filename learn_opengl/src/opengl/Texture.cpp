@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "Texture.h"
 #include "Exception.h"
 #ifndef STB_IMAGE_IMPLEMENTATION_
@@ -16,7 +18,9 @@ Texture::Texture(const std::string& path)
         &m_BPP, 0);
 	// todo add read image exception
     if (!m_LocalBuffer) {
-        throw std::exception("Failed to load texture.");
+        std::stringstream ss;
+        ss << "Failed to load texture at: " << path;
+        throw std::runtime_error(ss.str().c_str());
     }
 
     // set the texture wrapping/filtering options (on currently bound texture)

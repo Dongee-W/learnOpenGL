@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <GLAD/glad.h>
+#include "Exception.h"
 
 struct VertexBufferElement {
 	unsigned int type;
@@ -13,8 +14,7 @@ struct VertexBufferElement {
 		case GL_UNSIGNED_INT: return 4;
 		case GL_UNSIGNED_BYTE: return 1;
 		}
-
-		throw std::exception("Unsupported Opengl type");
+		throw OpenGLException{ "Unsupported Vertex Buffer type." };
 		return 0;
 	}
 };

@@ -6,7 +6,7 @@ VertexArray::VertexArray() {
 }
 
 VertexArray::~VertexArray() {
-	glCall(glDeleteVertexArrays(1, &m_RendererID))
+	glCall(glDeleteVertexArrays(1, &m_RendererID));
 }
 
 void VertexArray::addBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout) {
