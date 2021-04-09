@@ -23,6 +23,8 @@
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
     <ClCompile Include="src\experiments\ImageViewer.cpp" />
+    <ClCompile Include="src\sample\ImguiDemo.cpp" />
+    <ClCompile Include="src\vendor\imgui.cpp" />
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
     <ClCompile Include="src\opengl\Renderer.cpp" />
@@ -31,8 +33,14 @@
     <ClCompile Include="src\opengl\VertexBuffer.cpp" />
     <ClCompile Include="src\sample\ErrorHandling.cpp" />
     <ClCompile Include="src\sample\OpenGLClasses.cpp" />
-    <ClCompile Include="src\util\glad.c" />
+    <ClCompile Include="src\vendor\glad.c" />
     <ClCompile Include="src\sample\ImageLoading.cpp" />
+    <ClCompile Include="src\vendor\imgui_demo.cpp" />
+    <ClCompile Include="src\vendor\imgui_draw.cpp" />
+    <ClCompile Include="src\vendor\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\vendor\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\vendor\imgui_tables.cpp" />
+    <ClCompile Include="src\vendor\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.fs" />
@@ -57,6 +65,7 @@
     <ClInclude Include="src\opengl\VertexBufferLayout.h" />
     <ClInclude Include="src\sample\ErrorHandling.h" />
     <ClInclude Include="src\sample\ImageLoading.h" />
+    <ClInclude Include="src\sample\ImguiDemo.h" />
     <ClInclude Include="src\sample\OpenGLClasses.h" />
     <ClInclude Include="src\opengl\Shader.h" />
     <ClInclude Include="src\010_MinimalCode.h" />
@@ -139,7 +148,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\opencv\include;$(SolutionDir)dependencies\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,7 +169,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\opencv\include;$(SolutionDir)dependencies\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,7 +190,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\opencv\include;$(SolutionDir)dependencies\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -202,7 +211,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\opencv\include;$(SolutionDir)dependencies\GLFW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>

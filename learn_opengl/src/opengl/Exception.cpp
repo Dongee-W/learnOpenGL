@@ -17,7 +17,6 @@ std::optional<std::string> glLogCall(const char* function, const char* file, int
 			function << " " << file << ":" << line << std::endl;
 	}
 	if (flag) {
-		std::cout << ss.str() << std::endl;
 		return std::optional<std::string>{ss.str()};
 	} 
 	else {
