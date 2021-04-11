@@ -7,8 +7,10 @@ private:
 	std::string m_FilePath;
 	unsigned char* m_LocalBuffer;
 	int  m_Width, m_Height, m_BPP;
+	bool flipVertically = false;
 public:
 	Texture(const std::string& path);
+	Texture(const std::string& path, bool flipVertically);
 	~Texture();
 
 	void bind(unsigned int slot = 0) const;
@@ -16,4 +18,5 @@ public:
 
 	inline int getWidth() const { return m_Width; }
 	inline int getHeight() const { return m_Height; }
+	inline int getID() const { return m_RendererID; }
  };

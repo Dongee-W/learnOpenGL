@@ -59,6 +59,8 @@
     <ClCompile Include="src\sample\OpenGLClassesTest.cpp" />
     <ClCompile Include="src\SceneTest.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\tools\DisplayImageDemoTest.cpp" />
+    <ClCompile Include="src\tools\SimpleImguiDemoTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\learn_opengl\learn_opengl.vcxproj">

@@ -24,6 +24,8 @@
     <ClCompile Include="src\061_CameraModule.cpp" />
     <ClCompile Include="src\experiments\ImageViewer.cpp" />
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
+    <ClCompile Include="src\tools\DisplayImageDemo.cpp" />
+    <ClCompile Include="src\tools\SimpleImguiDemo.cpp" />
     <ClCompile Include="src\vendor\imgui.cpp" />
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
@@ -69,6 +71,8 @@
     <ClInclude Include="src\sample\OpenGLClasses.h" />
     <ClInclude Include="src\opengl\Shader.h" />
     <ClInclude Include="src\010_MinimalCode.h" />
+    <ClInclude Include="src\tools\DisplayImageDemo.h" />
+    <ClInclude Include="src\tools\SimpleImguiDemo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
