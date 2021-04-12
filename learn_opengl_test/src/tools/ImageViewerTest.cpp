@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "experiments/ImageViewer.h"
+#include "tools/ImageViewerApp.h"
 
-TEST(Experiments, ImageViewer) {
+TEST(Tools, ImageViewer) {
     int success = runImageViewer();
     EXPECT_EQ(success, 0);
 }

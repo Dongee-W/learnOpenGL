@@ -52,15 +52,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\experiments\ImageViewerTest.cpp" />
+    <ClCompile Include="src\tools\ImageViewerTest.cpp" />
     <ClCompile Include="src\sample\ErrorHandlingTest.cpp" />
     <ClCompile Include="src\sample\ImageLoadingTest.cpp" />
     <ClCompile Include="src\sample\ImguiTest.cpp" />
     <ClCompile Include="src\sample\OpenGLClassesTest.cpp" />
     <ClCompile Include="src\SceneTest.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\tools\DisplayImageDemoTest.cpp" />
-    <ClCompile Include="src\tools\SimpleImguiDemoTest.cpp" />
+    <ClCompile Include="src\tools\ImguiImageAppTest.cpp" />
+    <ClCompile Include="src\tools\ImguiDemoAppTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\learn_opengl\learn_opengl.vcxproj">

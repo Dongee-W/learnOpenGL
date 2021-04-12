@@ -10,9 +10,8 @@
 #include "stb_image.h"
 #endif /* STB_IMAGE_IMPLEMENTATION_ */
 
-Texture::Texture(const std::string& path) {
-    Texture::Texture(path, true);
-}
+Texture::Texture(const std::string& path) : 
+    Texture::Texture(path, true) {}
 
 Texture::Texture(const std::string& path, bool flipVertically) 
 	: m_RendererID(0), m_FilePath(path), m_LocalBuffer(nullptr), 
@@ -25,6 +24,13 @@ Texture::Texture(const std::string& path, bool flipVertically)
     //m_LocalBuffer = stbi_load(path.c_str() , &m_Width, &m_Height,
     //    &m_BPP, 0);
     cv::Mat image = cv::imread(path);
+
+    if (image.empty()) {
+        std::stringstream ss;
+        ss << "Failed to load texture at: " << path;
+        throw std::runtime_error(ss.str().c_str());
+    }
+
     m_LocalBuffer = image.data;
     m_Width = image.size().width;
     m_Height = image.size().height;
@@ -34,12 +40,7 @@ Texture::Texture(const std::string& path, bool flipVertically)
         cv::flip(image, image, -1);
 
 
-	// todo add read image exception
-    if (!m_LocalBuffer) {
-        std::stringstream ss;
-        ss << "Failed to load texture at: " << path;
-        throw std::runtime_error(ss.str().c_str());
-    }
+
 
     // set the texture wrapping/filtering options (on currently bound texture)
     glCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));

@@ -3,6 +3,6 @@
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
-    testing::GTEST_FLAG(filter) = "Tools.SimpleGUI";
+    testing::GTEST_FLAG(filter) = "Tools.ImageViewer";
     return RUN_ALL_TESTS();
 }

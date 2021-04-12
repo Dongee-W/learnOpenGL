@@ -22,10 +22,10 @@
     <ClCompile Include="src\010_MinimalCode.cpp" />
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
-    <ClCompile Include="src\experiments\ImageViewer.cpp" />
+    <ClCompile Include="src\tools\ImageViewerApp.cpp" />
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
-    <ClCompile Include="src\tools\DisplayImageDemo.cpp" />
-    <ClCompile Include="src\tools\SimpleImguiDemo.cpp" />
+    <ClCompile Include="src\tools\ImguiImageApp.cpp" />
+    <ClCompile Include="src\tools\ImguiDemoApp.cpp" />
     <ClCompile Include="src\vendor\imgui.cpp" />
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
@@ -57,7 +57,7 @@
     <ClInclude Include="src\030_Texture.h" />
     <ClInclude Include="src\061_CameraModule.h" />
     <ClInclude Include="src\Camera.h" />
-    <ClInclude Include="src\experiments\ImageViewer.h" />
+    <ClInclude Include="src\tools\ImageViewerApp.h" />
     <ClInclude Include="src\opengl\Exception.h" />
     <ClInclude Include="src\opengl\IndexBuffer.h" />
     <ClInclude Include="src\opengl\Renderer.h" />
@@ -71,8 +71,8 @@
     <ClInclude Include="src\sample\OpenGLClasses.h" />
     <ClInclude Include="src\opengl\Shader.h" />
     <ClInclude Include="src\010_MinimalCode.h" />
-    <ClInclude Include="src\tools\DisplayImageDemo.h" />
-    <ClInclude Include="src\tools\SimpleImguiDemo.h" />
+    <ClInclude Include="src\tools\ImguiImageApp.h" />
+    <ClInclude Include="src\tools\ImguiDemoApp.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
