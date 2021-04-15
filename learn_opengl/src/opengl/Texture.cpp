@@ -37,7 +37,9 @@ Texture::Texture(const std::string& path, bool flipVertically)
     m_BPP = image.elemSize();
     cv::cvtColor(image, image, cv::COLOR_BGR2RGB);
     if (flipVertically)
-        cv::flip(image, image, -1);
+        // 0: flip around x-axis, positive value: flip around y-axis, 
+        // negative value both axes.
+        cv::flip(image, image, 0);
 
 
 

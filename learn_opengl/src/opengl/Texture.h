@@ -7,7 +7,7 @@ private:
 	std::string m_FilePath;
 	unsigned char* m_LocalBuffer;
 	int  m_Width, m_Height, m_BPP;
-	bool flipVertically = false;
+	bool flipVertically = true;
 public:
 	Texture(const std::string& path);
 	Texture(const std::string& path, bool flipVertically);
