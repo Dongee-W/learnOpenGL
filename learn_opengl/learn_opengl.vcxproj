@@ -22,6 +22,7 @@
     <ClCompile Include="src\010_MinimalCode.cpp" />
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
+    <ClCompile Include="src\070_Mesh.cpp" />
     <ClCompile Include="src\tools\ImageViewerApp.cpp" />
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
     <ClCompile Include="src\tools\ImguiImageApp.cpp" />
@@ -56,6 +57,7 @@
   <ItemGroup>
     <ClInclude Include="src\030_Texture.h" />
     <ClInclude Include="src\061_CameraModule.h" />
+    <ClInclude Include="src\070_Mesh.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\tools\ImageViewerApp.h" />
     <ClInclude Include="src\opengl\Exception.h" />
@@ -215,7 +217,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLAD\include;$(SolutionDir)dependencies\stb;$(SolutionDir)dependencies\glm;$(SolutionDir)dependencies\imgui\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\opencv\include;$(SolutionDir)dependencies\assimp\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -227,8 +229,8 @@
       <AdditionalDependencies>glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\opencv\lib;$(SolutionDir)dependencies\GLFW\lib-vc2019</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opencv_world451.lib;</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\opencv\lib;$(SolutionDir)dependencies\GLFW\lib-vc2019;$(SolutionDir)dependencies\assimp\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;opencv_world451.lib;assimp-vc142-mt.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
