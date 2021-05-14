@@ -22,7 +22,7 @@
     <ClCompile Include="src\010_MinimalCode.cpp" />
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
-    <ClCompile Include="src\070_Mesh.cpp" />
+    <ClCompile Include="src\070_Light.cpp" />
     <ClCompile Include="src\tools\ImageViewerApp.cpp" />
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
     <ClCompile Include="src\tools\ImguiImageApp.cpp" />
@@ -57,7 +57,7 @@
   <ItemGroup>
     <ClInclude Include="src\030_Texture.h" />
     <ClInclude Include="src\061_CameraModule.h" />
-    <ClInclude Include="src\070_Mesh.h" />
+    <ClInclude Include="src\070_Light.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\opengl\Mesh.h" />
     <ClInclude Include="src\opengl\Vertex.h" />

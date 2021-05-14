@@ -87,7 +87,7 @@
     <ClCompile Include="src\tools\ImguiDemoApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\070_Mesh.cpp">
+    <ClCompile Include="src\070_Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -158,7 +158,7 @@
     <ClInclude Include="src\tools\ImguiDemoApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\070_Mesh.h">
+    <ClInclude Include="src\070_Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\Vertex.h">

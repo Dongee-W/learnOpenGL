@@ -2,7 +2,7 @@
 #include "010_MinimalCode.h"
 #include "030_Texture.h"
 #include "061_CameraModule.h"
-#include "070_Mesh.h"
+#include "070_Light.h"
 
 TEST(Scene010, MinimalCode) {
     int success = demoMinimalOpenGL();
@@ -18,6 +18,6 @@ TEST(Scene061, Basics) {
     EXPECT_EQ(success, 0);
 }
 
-TEST(Scene070, Mesh) {
-    testtest();
+TEST(Scene070, Lighting) {
+    demoLightingScene();
 }
