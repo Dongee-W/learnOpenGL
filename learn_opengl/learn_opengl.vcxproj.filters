@@ -161,5 +161,14 @@
     <ClInclude Include="src\070_Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\opengl\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\VertexTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

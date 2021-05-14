@@ -59,6 +59,9 @@
     <ClInclude Include="src\061_CameraModule.h" />
     <ClInclude Include="src\070_Mesh.h" />
     <ClInclude Include="src\Camera.h" />
+    <ClInclude Include="src\opengl\Mesh.h" />
+    <ClInclude Include="src\opengl\Vertex.h" />
+    <ClInclude Include="src\opengl\VertexTexture.h" />
     <ClInclude Include="src\tools\ImageViewerApp.h" />
     <ClInclude Include="src\opengl\Exception.h" />
     <ClInclude Include="src\opengl\IndexBuffer.h" />
