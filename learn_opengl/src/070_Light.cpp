@@ -121,14 +121,15 @@ int demoLightingScene() {
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	/* Build and compile shader program */
-	Shader shaderProgram("../resources/shaders/Lighting.vs",
+	Shader shaderObject("../resources/shaders/Lighting.vs",
 		"../resources/shaders/Lighting.fs");
 
-	
+	Shader shaderLight("../resources/shaders/Lighting.vs",
+		"../resources/shaders/LightSource.fs");
 
 	{
 
-		float vertices[] = {
+		/*float vertices[] = {
 			0.5f, 0.5f, 0.0f, 1.0f, 1.0f, // top right
 			0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
@@ -152,6 +153,60 @@ int demoLightingScene() {
 			1, 6, 5,
 			5, 6, 7,
 			4, 5, 7
+		};*/
+		float vertices[] = {
+			// positions // normals // texture coords
+			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+			-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+			-0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+			-0.5f, 0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+			-0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+			-0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+			-0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+			0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+			0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+			0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+			0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,
+			0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+			0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+			-0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+			-0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+			-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+			0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+			0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+			0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+			-0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+			-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f
+		};
+
+		unsigned int indices[] = { // note that we start from 0!
+			0, 1, 2, // first triangle
+			3, 4, 5, // second triangle
+			6, 7, 8,
+			9, 10, 11,
+			12, 13, 14,
+			15, 16, 17,
+			18, 19, 20,
+			21, 22, 23,
+			24, 25, 26,
+			27, 28, 29,
+			30, 31, 32,
+			33, 34, 35
 		};
 
 		VertexArray va;
@@ -160,15 +215,29 @@ int demoLightingScene() {
 
 		VertexBufferLayout layout;
 		layout.push<float>(3);
+		layout.push<float>(3);
 		layout.push<float>(2);
 		va.addBuffer(vb, layout);
 
+		VertexArray lightVa;
+		VertexBuffer lightVb(vertices, sizeof(vertices));
+		IndexBuffer lightIb(indices, 36);
+		VertexBufferLayout lightLayout;
+		lightLayout.push<float>(3);
+		lightLayout.push<float>(3);
+		lightLayout.push<float>(2);
+		lightVa.addBuffer(lightVb, lightLayout);
+
 		Renderer renderer;
+		glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
-		Texture texture("../resources/container.jpg");
-		texture.bind();
+		shaderObject.use();
+		shaderObject.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+		shaderObject.setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+		shaderObject.setVec3("lightPos", lightPos);
 
-		shaderProgram.setInt("uTexture", 0);
+
+		
 
 		/* Enable depth test */
 		glCall(glEnable(GL_DEPTH_TEST));
@@ -194,11 +263,23 @@ int demoLightingScene() {
 				(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
 			// get their uniform location and set matrix (using glm::value_ptr)
-			shaderProgram.setMat4("model", model);
-			shaderProgram.setMat4("view", view);
-			shaderProgram.setMat4("projection", projection);
+			shaderObject.use();
+			shaderObject.setMat4("model", model);
+			shaderObject.setMat4("view", view);
+			shaderObject.setMat4("projection", projection);
 
-			renderer.draw(va, ib, shaderProgram);
+			renderer.draw(va, ib, shaderObject);
+
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, lightPos);
+			model = glm::scale(model, glm::vec3(0.2f));
+
+			shaderLight.use();
+			shaderLight.setMat4("model", model);
+			shaderLight.setMat4("view", view);
+			shaderLight.setMat4("projection", projection);
+
+			renderer.draw(lightVa, lightIb, shaderLight);
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();
