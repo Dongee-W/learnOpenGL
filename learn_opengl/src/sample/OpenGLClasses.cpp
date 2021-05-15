@@ -174,7 +174,7 @@ int demoOpenGLClassesMesh() {
 			Vertex{glm::vec3{-0.5f, 0.5f, 0.0f}, glm::vec3{0.5f, 0.5f, 0.0f}, glm::vec2{0.0f, 1.0f}}
 		};
 		std::vector<unsigned int> indices = { 0, 1, 3, 1, 2, 3 };
-		std::vector<VertexTexture> textures = { VertexTexture{1,"d"} };
+		std::vector<MeshTexture> textures = { MeshTexture{1,"d"} };
 		Mesh mesh(vertices, indices, textures);
 
 

@@ -90,6 +90,9 @@
     <ClCompile Include="src\070_Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\080_Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\Basic.fs" />
@@ -164,10 +167,16 @@
     <ClInclude Include="src\opengl\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\opengl\VertexTexture.h">
+    <ClInclude Include="src\opengl\MeshTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\opengl\Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\opengl\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\080_Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

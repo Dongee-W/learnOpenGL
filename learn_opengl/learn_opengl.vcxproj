@@ -23,6 +23,7 @@
     <ClCompile Include="src\030_Texture.cpp" />
     <ClCompile Include="src\061_CameraModule.cpp" />
     <ClCompile Include="src\070_Light.cpp" />
+    <ClCompile Include="src\080_Model.cpp" />
     <ClCompile Include="src\tools\ImageViewerApp.cpp" />
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
     <ClCompile Include="src\tools\ImguiImageApp.cpp" />
@@ -58,10 +59,12 @@
     <ClInclude Include="src\030_Texture.h" />
     <ClInclude Include="src\061_CameraModule.h" />
     <ClInclude Include="src\070_Light.h" />
+    <ClInclude Include="src\080_Model.h" />
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\opengl\Mesh.h" />
+    <ClInclude Include="src\opengl\Model.h" />
     <ClInclude Include="src\opengl\Vertex.h" />
-    <ClInclude Include="src\opengl\VertexTexture.h" />
+    <ClInclude Include="src\opengl\MeshTexture.h" />
     <ClInclude Include="src\tools\ImageViewerApp.h" />
     <ClInclude Include="src\opengl\Exception.h" />
     <ClInclude Include="src\opengl\IndexBuffer.h" />

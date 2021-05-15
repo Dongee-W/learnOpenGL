@@ -3,6 +3,7 @@
 #include "030_Texture.h"
 #include "061_CameraModule.h"
 #include "070_Light.h"
+#include "080_Model.h"
 
 TEST(Scene010, MinimalCode) {
     int success = demoMinimalOpenGL();
@@ -20,4 +21,8 @@ TEST(Scene061, Basics) {
 
 TEST(Scene070, Lighting) {
     demoLightingScene();
+}
+
+TEST(Scene080, Model) {
+    demoBackpackScene();
 }

@@ -4,6 +4,7 @@
 3. Using Visual Studio Build `ALL_BUILD`
 4. `lib` and `dll` file in `code\Release` folder
 5. change `config.h.in` file in `include` directory into `config.h` (Not sure why)
+6. Remember to put dll in the executable folder
 
 Bellow are older version
 CMake
