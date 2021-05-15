@@ -219,8 +219,9 @@ int demoLightingScene() {
 		layout.push<float>(2);
 		va.addBuffer(vb, layout);
 
+		/* Vertex for light bulb */
 		VertexArray lightVa;
-		VertexBuffer lightVb(vertices, sizeof(vertices));
+		VertexBuffer lightVb(vertices, sizeof(vertices)); // More efficient to reuse 
 		IndexBuffer lightIb(indices, 36);
 		VertexBufferLayout lightLayout;
 		lightLayout.push<float>(3);
@@ -232,13 +233,21 @@ int demoLightingScene() {
 		glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 		shaderObject.use();
-		shaderObject.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
+		//shaderObject.setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f));
 		shaderObject.setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 		shaderObject.setVec3("lightPos", lightPos);
-
-
 		
 
+		shaderObject.setVec3("material.ambient", glm::vec3(1.0f, 0.5f, 0.31f));
+		shaderObject.setVec3("material.diffuse", glm::vec3(1.0f, 0.5f, 0.31f));
+		shaderObject.setVec3("material.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+		shaderObject.setFloat("material.shininess", 32.0f);
+
+		shaderObject.setVec3("light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
+		shaderObject.setVec3("light.diffuse", glm::vec3(0.5f, 0.5f, 0.5f)); // darkened
+		shaderObject.setVec3("light.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+		
 		/* Enable depth test */
 		glCall(glEnable(GL_DEPTH_TEST));
 
@@ -262,14 +271,16 @@ int demoLightingScene() {
 			glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
 				(float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
-			// get their uniform location and set matrix (using glm::value_ptr)
+			/* Draw cube */
 			shaderObject.use();
+			shaderObject.setVec3("viewPos", camera.Position);
 			shaderObject.setMat4("model", model);
 			shaderObject.setMat4("view", view);
 			shaderObject.setMat4("projection", projection);
 
 			renderer.draw(va, ib, shaderObject);
 
+			/* Draw light bulb */
 			model = glm::mat4(1.0f);
 			model = glm::translate(model, lightPos);
 			model = glm::scale(model, glm::vec3(0.2f));

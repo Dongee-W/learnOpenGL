@@ -17,5 +17,5 @@ void main()
 
 	TexCoord = aTexCoord;
 	FragPos = vec3(model * vec4(aPos, 1.0)); // Local of the fragment in world coordination
-	Normal = aNormal; // Normal of the fragment
+	Normal = mat3(transpose(inverse(model))) * aNormal; // Expensive, move to CPU in production
 };
