@@ -42,7 +42,6 @@ private:
 			std::stringstream ss;
 			ss << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
 			throw std::runtime_error(ss.str());
-			return;
 		}
 		directory = path.substr(0, path.find_last_of('/'));
 		processNode(scene->mRootNode, scene);
@@ -114,6 +113,7 @@ private:
 		// process material
 		if (mesh->mMaterialIndex >= 0)
 		{
+			
 			// process materials
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			// we assume a convention for sampler names in the shaders. Each diffuse texture should be named
@@ -141,6 +141,7 @@ private:
 
 	std::vector<MeshTexture> loadMaterialTextures(aiMaterial* mat, aiTextureType type,
 		std::string typeName) {
+		
 		std::vector<MeshTexture> textures;
 		for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
 		{
@@ -205,7 +206,9 @@ private:
 		}
 		else
 		{
-			std::cout << "Texture failed to load at path: " << path << std::endl;
+			std::stringstream ss;
+			ss << "Texture failed to load at path: " << path << std::endl;
+			throw std::runtime_error(ss.str());
 			stbi_image_free(data);
 		}
 

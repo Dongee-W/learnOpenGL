@@ -9,9 +9,9 @@ using namespace std;
 class Mesh {
 public:
     // mesh Data
-    vector<Vertex>       vertices;
+    vector<Vertex> vertices;
     vector<unsigned int> indices;
-    vector<MeshTexture>      textures;
+    vector<MeshTexture> textures;
     //unsigned int VAO;
     shared_ptr<VertexArray> va = make_shared<VertexArray>();
 

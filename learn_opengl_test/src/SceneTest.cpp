@@ -4,6 +4,7 @@
 #include "061_CameraModule.h"
 #include "070_Light.h"
 #include "080_Model.h"
+#include "081_WarhoundAnimation.h"
 
 TEST(Scene010, MinimalCode) {
     int success = demoMinimalOpenGL();
@@ -25,4 +26,7 @@ TEST(Scene070, Lighting) {
 
 TEST(Scene080, Model) {
     demoBackpackScene();
+}
+TEST(Scene081, Warhound) {
+    animateWarhound();
 }
