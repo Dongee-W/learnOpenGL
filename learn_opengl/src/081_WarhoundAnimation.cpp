@@ -16,6 +16,7 @@
 #include "opengl/Mesh.h"
 #include "Camera.h"
 #include "opengl/Model.h"
+#include "utils/Graph.h"
 
 namespace {
 
@@ -125,8 +126,24 @@ int animateWarhound() {
 	Shader shader("../resources/shaders/Model.vs",
 		"../resources/shaders/Model.fs");
 
+	Graph scene(11);
+	scene.addEdge(0, 1);
+	scene.addEdge(0, 2);
+	scene.addEdge(0, 3);
+	scene.addEdge(0, 4);
+	scene.addEdge(0, 5);
+	scene.addEdge(0, 6);
+	scene.addEdge(3, 7);
+	scene.addEdge(4, 8);
+	scene.addEdge(5, 9);
+	scene.addEdge(6, 10);
+
+	auto allPath = scene.bfsHistory(0);
+
 	{
-		Model ourModel("../resources/objects/simple/simple.obj");
+		Model model1("../resources/objects/warhound/body.obj");
+		Model model2("../resources/objects/warhound/head.obj");
+
 
 
 		/* Enable depth test */
@@ -155,10 +172,19 @@ int animateWarhound() {
 
 			// render the loaded model
 			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
 			model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+			
 			shader.setMat4("model", model);
-			ourModel.draw(shader);
+			model1.draw(shader);
+
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(0.0f, 1.67f, 0.14f)); // translate it down so it's at the center of the scene
+			
+			shader.setMat4("model", model);
+			model2.draw(shader);
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();

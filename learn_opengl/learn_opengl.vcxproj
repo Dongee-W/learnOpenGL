@@ -29,6 +29,7 @@
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
     <ClCompile Include="src\tools\ImguiImageApp.cpp" />
     <ClCompile Include="src\tools\ImguiDemoApp.cpp" />
+    <ClCompile Include="src\utils\Graph.cpp" />
     <ClCompile Include="src\vendor\imgui.cpp" />
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
