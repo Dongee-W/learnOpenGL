@@ -1,3 +1,4 @@
+#pragma once
 // Program to print BFS traversal from a given
 // source vertex. BFS(int s) traverses vertices
 // reachable from s.
@@ -5,11 +6,13 @@
 #include <list>
 #include <vector>
 
+#include "../opengl/Model.h"
+
 using namespace std;
 
 // This class represents a directed graph using
 // adjacency list representation
-class Graph
+class SceneGraph
 {
     int V;    // No. of vertices
 
@@ -17,7 +20,7 @@ class Graph
     // lists
     list<int>* adj;
 public:
-    Graph(int V);  // Constructor
+    SceneGraph(int V);  // Constructor
 
     // function to add an edge to graph
     void addEdge(int v, int w);
@@ -25,4 +28,9 @@ public:
     // prints BFS traversal from a given source s
     void BFS(int s);
     vector<vector<int>> bfsHistory(int s);
+};
+
+struct SceneNode {
+    Model* model;
+    glm::mat4 modelMatrix;
 };

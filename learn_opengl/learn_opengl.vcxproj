@@ -29,7 +29,8 @@
     <ClCompile Include="src\sample\ImguiDemo.cpp" />
     <ClCompile Include="src\tools\ImguiImageApp.cpp" />
     <ClCompile Include="src\tools\ImguiDemoApp.cpp" />
-    <ClCompile Include="src\utils\Graph.cpp" />
+    <ClCompile Include="src\utils\SceneGraph.cpp" />
+    <ClCompile Include="src\utils\SceneElement.cpp" />
     <ClCompile Include="src\vendor\imgui.cpp" />
     <ClCompile Include="src\opengl\Exception.cpp" />
     <ClCompile Include="src\opengl\IndexBuffer.cpp" />
@@ -84,7 +85,7 @@
     <ClInclude Include="src\010_MinimalCode.h" />
     <ClInclude Include="src\tools\ImguiImageApp.h" />
     <ClInclude Include="src\tools\ImguiDemoApp.h" />
-    <ClInclude Include="src\utils\Graph.h" />
+    <ClInclude Include="src\utils\SceneGraph.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -4,6 +4,10 @@
 
 #include "Vertex.h"
 #include "MeshTexture.h"
+#include "VertexArray.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "Shader.h"
 using namespace std;
 
 class Mesh {

@@ -1,10 +1,10 @@
 #include <gtest/gtest.h>
 
-#include "utils/Graph.h"
+#include "utils/SceneGraph.h"
 
 TEST(Graph, Creation) {
     // Create a graph given in the above diagram
-    Graph g(8);
+    SceneGraph g(8);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(0, 3);

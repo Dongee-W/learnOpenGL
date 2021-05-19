@@ -1,17 +1,17 @@
-#include "Graph.h"
+#include "SceneGraph.h"
 
-Graph::Graph(int V)
+SceneGraph::SceneGraph(int V)
 {
     this->V = V;
     adj = new list<int>[V];
 }
 
-void Graph::addEdge(int v, int w)
+void SceneGraph::addEdge(int v, int w)
 {
     adj[v].push_back(w); // Add w to v¡¦s list.
 }
 
-void Graph::BFS(int s)
+void SceneGraph::BFS(int s)
 {
     // Mark all the vertices as not visited
     bool* visited = new bool[V];
@@ -50,7 +50,7 @@ void Graph::BFS(int s)
     }
 }
 
-vector<vector<int>> Graph::bfsHistory(int s) {
+vector<vector<int>> SceneGraph::bfsHistory(int s) {
 
     vector<vector<int>> allPath;
     // Mark all the vertices as not visited

@@ -16,7 +16,7 @@
 #include "opengl/Mesh.h"
 #include "Camera.h"
 #include "opengl/Model.h"
-#include "utils/Graph.h"
+#include "utils/SceneGraph.h"
 
 namespace {
 
@@ -27,7 +27,7 @@ namespace {
 	float lastY = SCR_HEIGHT / 2.0f;
 	bool firstMouse = true;
 
-	Camera camera(glm::vec3(0.0f, 0.0f, 2.0f));
+	Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
 
 	// timing
 	float deltaTime = 0.0f;	// time between current frame and last frame
@@ -126,7 +126,8 @@ int animateWarhound() {
 	Shader shader("../resources/shaders/Model.vs",
 		"../resources/shaders/Model.fs");
 
-	Graph scene(11);
+	
+	SceneGraph scene(11);
 	scene.addEdge(0, 1);
 	scene.addEdge(0, 2);
 	scene.addEdge(0, 3);
@@ -141,8 +142,75 @@ int animateWarhound() {
 	auto allPath = scene.bfsHistory(0);
 
 	{
-		Model model1("../resources/objects/warhound/body.obj");
-		Model model2("../resources/objects/warhound/head.obj");
+		//Model test("../resources/objects/warhound/warhound.glb");
+		Model model0("../resources/objects/warhound/body.obj");
+		Model model1("../resources/objects/warhound/head.obj");
+		Model model2("../resources/objects/warhound/tail.obj");
+		Model model3("../resources/objects/warhound/feet_03.obj");
+		Model model4("../resources/objects/warhound/feet_04.obj");
+		Model model5("../resources/objects/warhound/feet_05.obj");
+		Model model6("../resources/objects/warhound/feet_06.obj");
+		Model model7("../resources/objects/warhound/feet_07.obj");
+		Model model8("../resources/objects/warhound/feet_08.obj");
+		Model model9("../resources/objects/warhound/feet_09.obj");
+		Model model10("../resources/objects/warhound/feet_10.obj");
+		
+		/* Scene setup */
+		std::vector<SceneNode> sceneNodes;
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model0, model });
+
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.67f, 0.0f, 0.14f));
+		sceneNodes.push_back(SceneNode{ &model1, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.93f, 0.0f, 0.548f));
+		sceneNodes.push_back(SceneNode{ &model2, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.77f, 0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model3, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.77f, -0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model4, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.77f, 0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model5, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.77f, -0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model6, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model7, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model8, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model9, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model10, model });
 
 
 
@@ -170,21 +238,91 @@ int animateWarhound() {
 			shader.setMat4("projection", projection);
 			shader.setMat4("view", view);
 
+			for (auto& path : allPath) {
+				model = glm::mat4(1.0f);
+				for (auto& node : path) {
+					model = model * sceneNodes[node].modelMatrix;
+				}
+				shader.setMat4("model", model);
+				sceneNodes[path.back()].model->draw(shader);
+			}
+
+			/*
 			// render the loaded model
-			glm::mat4 model = glm::mat4(1.0f);
-			model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+			//model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+
+
+			shader.setMat4("model", model);
+			model0.draw(shader);
+
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(1.67f, 0.0f, 0.14f)); // translate it down so it's at the center of the scene
+			
 			
 			shader.setMat4("model", model);
 			model1.draw(shader);
 
 			// render the loaded model
 			model = glm::mat4(1.0f);
-			model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(0.0f, 1.67f, 0.14f)); // translate it down so it's at the center of the scene
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(-0.93f, 0.0f, 0.548f)); // translate it down so it's at the center of the scene
 			
 			shader.setMat4("model", model);
 			model2.draw(shader);
+
+			
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(0.77f, 0.82f, -1.0f)); // translate it down so it's at the center of the scene
+			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+			shader.setMat4("model", model);
+			model3.draw(shader);
+			
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(0.77f, -0.82f, -1.0f)); // translate it down so it's at the center of the scene
+			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+
+			shader.setMat4("model", model);
+			model4.draw(shader);
+			
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(-0.77f, 0.82f, -1.0f )); // translate it down so it's at the center of the scene
+			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+
+			shader.setMat4("model", model);
+			model5.draw(shader);
+			
+			// render the loaded model
+			model = glm::mat4(1.0f);
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
+			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
+			model = glm::translate(model, glm::vec3(-0.77f , -0.82f, -1.0f)); // translate it down so it's at the center of the scene
+			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+
+			shader.setMat4("model", model);
+			model6.draw(shader);*/
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();
