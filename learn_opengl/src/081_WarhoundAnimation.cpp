@@ -28,6 +28,8 @@ namespace {
 	bool firstMouse = true;
 
 	Camera camera(glm::vec3(0.0f, 0.0f, 5.0f));
+	int currentRotator{ 0 };
+	bool isRotate{ false };
 
 	// timing
 	float deltaTime = 0.0f;	// time between current frame and last frame
@@ -58,6 +60,32 @@ namespace {
 			camera.ProcessKeyboard(LEFT, deltaTime);
 		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 			camera.ProcessKeyboard(RIGHT, deltaTime);
+
+		if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+			isRotate = !isRotate;
+
+		if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
+			currentRotator = 0;
+		if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+			currentRotator = 1;
+		if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+			currentRotator = 2;
+		if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+			currentRotator = 3;
+		if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+			currentRotator = 4;
+		if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+			currentRotator = 5;
+		if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+			currentRotator = 6;
+		if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
+			currentRotator = 7;
+		if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+			currentRotator = 8;
+		if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)
+			currentRotator = 9;
+		if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+			currentRotator = 10;
 	}
 
 	void mouse_callback(GLFWwindow* window, double xpos, double ypos)
@@ -165,7 +193,7 @@ int animateWarhound() {
 
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(1.67f, 0.0f, 0.14f));
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.14f));
 		sceneNodes.push_back(SceneNode{ &model1, model });
 
 		model = glm::mat4(1.0f);
@@ -284,6 +312,188 @@ int animateWarhound() {
 			model = glm::mat4(1.0f);
 			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 2) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
 			sceneNodes[10].modelMatrix *= model;
+
+			for (auto& path : allPath) {
+				model = glm::mat4(1.0f);
+				for (auto& node : path) {
+					model = model * sceneNodes[node].modelMatrix;
+				}
+				shader.setMat4("model", model);
+				sceneNodes[path.back()].model->draw(shader);
+			}
+
+
+			// Check and call events and swap the buffers
+			glfwPollEvents();
+			glfwSwapBuffers(window);
+		}
+	}
+	glfwTerminate();
+	return 0;
+}
+
+int jointTest() {
+	/* Initialize the library */
+	if (!glfwInit())
+		return -1;
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWwindow* window;
+
+	/* Create a windowed mode window and its OpenGL context */
+	window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Learn OpenGL", NULL, NULL);
+	if (!window)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+
+	/* Make the window's context current */
+	glfwMakeContextCurrent(window);
+	glfwSetCursorPosCallback(window, mouse_callback);
+	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+	/* GLAD Initialization after Opengl context has been set*/
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+		return -1;
+	}
+
+	glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+	/* Build and compile shader program */
+	Shader shader("../resources/shaders/Model.vs",
+		"../resources/shaders/Model.fs");
+
+
+	SceneGraph scene(11);
+	scene.addEdge(0, 1);
+	scene.addEdge(0, 2);
+	scene.addEdge(0, 3);
+	scene.addEdge(0, 4);
+	scene.addEdge(0, 5);
+	scene.addEdge(0, 6);
+	scene.addEdge(3, 7);
+	scene.addEdge(4, 8);
+	scene.addEdge(5, 9);
+	scene.addEdge(6, 10);
+
+	auto allPath = scene.bfsHistory(0);
+
+	{
+		//Model test("../resources/objects/warhound/warhound.glb");
+		Model model0("../resources/objects/warhound/body.obj");
+		Model model1("../resources/objects/warhound/head.obj");
+		Model model2("../resources/objects/warhound/tail.obj");
+		Model model3("../resources/objects/warhound/feet_03.obj");
+		Model model4("../resources/objects/warhound/feet_04.obj");
+		Model model5("../resources/objects/warhound/feet_05.obj");
+		Model model6("../resources/objects/warhound/feet_06.obj");
+		Model model7("../resources/objects/warhound/feet_07.obj");
+		Model model8("../resources/objects/warhound/feet_08.obj");
+		Model model9("../resources/objects/warhound/feet_09.obj");
+		Model model10("../resources/objects/warhound/feet_10.obj");
+
+		/* Scene setup */
+		std::vector<SceneNode> sceneNodes;
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0, 0.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model0, model });
+
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.14f));
+		sceneNodes.push_back(SceneNode{ &model1, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.93f, 0.0f, 0.548f));
+		sceneNodes.push_back(SceneNode{ &model2, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.77f, 0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model3, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.77f, -0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model4, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.77f, 0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model5, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.77f, -0.82f, -1.0f));
+		model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model6, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model7, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model8, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model9, model });
+
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-.1f, 0.0f, -0.4f));
+		model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0, 1.0, 0.0));
+		sceneNodes.push_back(SceneNode{ &model10, model });
+
+
+
+		/* Enable depth test */
+		glCall(glEnable(GL_DEPTH_TEST));
+
+
+		while (!glfwWindowShouldClose(window))
+		{
+			/* Process user input */
+			float currentFrame = glfwGetTime();
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
+			accumulatedTime += deltaTime;
+
+			/* Process user input */
+			processInput(window);
+			glCall(glClearColor(0.1f, 0.1f, 0.1f, 1.0f));
+			glCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+			shader.use();
+
+			// view/projection transformations
+			glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+			glm::mat4 view = camera.GetViewMatrix();
+			shader.setMat4("projection", projection);
+			shader.setMat4("view", view);
+
+			/* Animation update*/
+			if (isRotate) {
+				model = glm::mat4(1.0f);
+				model = glm::rotate(model, glm::radians(35.0f * deltaTime), glm::vec3(0.0, 1.0, 0.0));
+				sceneNodes[currentRotator].modelMatrix *= model;
+			}
+			
 
 			for (auto& path : allPath) {
 				model = glm::mat4(1.0f);

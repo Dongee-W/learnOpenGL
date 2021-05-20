@@ -30,3 +30,7 @@ TEST(Scene080, Model) {
 TEST(Scene081, Warhound) {
     animateWarhound();
 }
+
+TEST(Scene081, Joint) {
+    jointTest();
+}
