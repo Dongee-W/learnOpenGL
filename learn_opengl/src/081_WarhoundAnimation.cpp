@@ -32,7 +32,7 @@ namespace {
 	// timing
 	float deltaTime = 0.0f;	// time between current frame and last frame
 	float lastFrame = 0.0f;
-
+	float accumulatedTime = 0.0f;
 
 	/* glfw: whenever the window size changed (by OS or user resize)
 		this callback function executes */
@@ -224,6 +224,7 @@ int animateWarhound() {
 			float currentFrame = glfwGetTime();
 			deltaTime = currentFrame - lastFrame;
 			lastFrame = currentFrame;
+			accumulatedTime += deltaTime;
 
 			/* Process user input */
 			processInput(window);
@@ -238,6 +239,52 @@ int animateWarhound() {
 			shader.setMat4("projection", projection);
 			shader.setMat4("view", view);
 
+			/* Animation update*/
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(0.2f * deltaTime, 0.0f, 0.0f));
+			sceneNodes[0].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, (float)sin(accumulatedTime * 3.14 / 3) * 0.0005f));
+			sceneNodes[1].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 0.5) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[2].modelMatrix *= model;
+
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 2) * 0.4f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[3].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(-accumulatedTime * 3.14 / 2) * 0.4f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[4].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(-accumulatedTime * 3.14 / 2) * 0.4f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[5].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 2) * 0.4f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[6].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 2) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[7].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(-accumulatedTime * 3.14 / 2) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[8].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(-accumulatedTime * 3.14 / 2) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[9].modelMatrix *= model;
+
+			model = glm::mat4(1.0f);
+			model = glm::rotate(model, glm::radians((float)sin(accumulatedTime * 3.14 / 2) * 0.2f), glm::vec3(0.0, 1.0, 0.0));
+			sceneNodes[10].modelMatrix *= model;
+
 			for (auto& path : allPath) {
 				model = glm::mat4(1.0f);
 				for (auto& node : path) {
@@ -247,82 +294,6 @@ int animateWarhound() {
 				sceneNodes[path.back()].model->draw(shader);
 			}
 
-			/*
-			// render the loaded model
-			//model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-
-
-			shader.setMat4("model", model);
-			model0.draw(shader);
-
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(1.67f, 0.0f, 0.14f)); // translate it down so it's at the center of the scene
-			
-			
-			shader.setMat4("model", model);
-			model1.draw(shader);
-
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(-0.93f, 0.0f, 0.548f)); // translate it down so it's at the center of the scene
-			
-			shader.setMat4("model", model);
-			model2.draw(shader);
-
-			
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(0.77f, 0.82f, -1.0f)); // translate it down so it's at the center of the scene
-			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
-			shader.setMat4("model", model);
-			model3.draw(shader);
-			
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(0.77f, -0.82f, -1.0f)); // translate it down so it's at the center of the scene
-			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
-
-			shader.setMat4("model", model);
-			model4.draw(shader);
-			
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(-0.77f, 0.82f, -1.0f )); // translate it down so it's at the center of the scene
-			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
-
-			shader.setMat4("model", model);
-			model5.draw(shader);
-			
-			// render the loaded model
-			model = glm::mat4(1.0f);
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-			//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-			//model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));	// it's a bit too big for our scene, so scale it down
-			model = glm::translate(model, glm::vec3(-0.77f , -0.82f, -1.0f)); // translate it down so it's at the center of the scene
-			model = glm::rotate(model, glm::radians(-40.0f), glm::vec3(0.0, 1.0, 0.0));
-
-			shader.setMat4("model", model);
-			model6.draw(shader);*/
 
 			// Check and call events and swap the buffers
 			glfwPollEvents();
