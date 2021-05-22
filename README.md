@@ -1,4 +1,5 @@
 # Welcome to OpenGL learning
+![ver](https://img.shields.io/badge/ver.-1.0-brightgreen)
 ![cpp](https://img.shields.io/badge/C%2B%2B-17-yellow)
 ![glad](https://img.shields.io/badge/Glad-0.1.34-red)
 ![glfw](https://img.shields.io/badge/GLFW-3.3-blue)
